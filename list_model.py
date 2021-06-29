@@ -13,4 +13,21 @@ class list_model:
         # rows = self.cur.fetchall()n
         # print(post_data["created_by"])
         #print("INSERT INTO list(data,status,created_by)values('"+post_data["data"]+"','"+post_data["status"]+"',"+post_data["created_by"]+")")
-        return make_response({"created_by":post_data},200)
+        return make_response({"success":"list_created"},200)
+
+    def delete_model(self,id):
+        self.cur.execute("DELETE from list where id="+id)
+        return make_response({"success":"list_deleted"},200)
+
+    def select_model(self):
+        self.cur.execute("SELECT * from list") 
+        select = self.cur.fetchall()
+        return make_response({"data":select},200)
+        #print(make_response({"data":select},200))
+    
+    def urlid_model(self,id):
+        self.cur.execute("SELECT * from list where id="+id) 
+        select = self.cur.fetchall()
+        return make_response({"data":select},200)
+      
+    
